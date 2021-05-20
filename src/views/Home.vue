@@ -1,62 +1,64 @@
 <template>
-  <form @submit.prevent="processForm">
-   <Input :task="task" />
+
+  <h1 class="my-5">Formularios con Vue.js</h1>
+
+  <form @submit.prevent="procesarFormulario">
+    <Input :tarea="tarea" />
   </form>
-  <br />
-  <Tasks-list />
+  <hr>
+  <ListaTareas />
 </template>
 
 <script>
-import Input from '../components/Input';
-import {mapActions} from 'vuex';
-import TasksList from '../components/TasksList.vue';
+
+import Input from '../components/Input'
+import ListaTareas from '../components/ListaTareas'
+import {mapActions} from 'vuex'
 const shortid = require('shortid');
 
 export default {
-  name: "Home",
+  name: 'Home',
   components: {
-    Input,
-    TasksList,
+    Input, ListaTareas
   },
   data() {
     return {
-      task: {
+      tarea: {
         id: '',
-        name: '',
-        categories: [],
-        status: '',
-        number: 0,
-      },
-    };
+        nombre: '',
+        categorias: [],
+        estado: '',
+        numero: 0
+      }
+    }
   },
   methods: {
-    ...mapActions(['setTasks']),
-    processForm() {
-      console.log(this.task);
-      if (this.task.name.trim() === "") {
-        console.log("Empty");
-        return;
+    ...mapActions(['setTareas']),
+    procesarFormulario(){
+      console.log(this.tarea)
+      if(this.tarea.nombre.trim() === ""){
+        console.log('Campo vacío')
+        return
       }
-      console.log("Not empty");
+      console.log('no está vacio')
 
-      this.task.id = shortid.generate();
-      console.log(this.task.id);
+      // generar id
+      this.tarea.id = shortid.generate()
+      console.log(this.tarea.id)
+      
+      // envian los datos
+      this.setTareas(this.tarea)
 
-      this.setTasks(this.task)
-
-      this.task = {
-        id:'',
-        name: "",
-        categories: [],
-        status: "",
-        number: 0,
-      };
-    },
+      // limpiar datos
+      this.tarea = {
+        id: '',
+        nombre: '',
+        categorias: [],
+        estado: '',
+        numero: 0
+      }
+    }
   },
-  computed: {
-    blocked() {
-      return this.task.name.trim() === "" ? true : false;
-    },
-  },
-};
+
+}
 </script>

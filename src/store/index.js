@@ -1,62 +1,63 @@
-import { createStore } from 'vuex';
-import router from '../router';
+import { createStore } from 'vuex'
+import router from '../router'
 
 export default createStore({
   state: {
-    tasks: [],
-    task: {
+    tareas: [],
+    tarea: {
       id: '',
-      name: '',
-      categories: [],
-      status: '',
-      number: 0,
-    },
+      nombre: '',
+      categorias: [],
+      estado: '',
+      numero: 0
+    }
   },
   mutations: {
-    load(state, payload) {
-      state.tasks = payload;
+    cargar(state, payload) {
+      state.tareas = payload
     },
     set(state, payload) {
-      state.tasks.push(payload)
-      localStorage.setItem('tasks', JSON.stringify(state.tasks))
+      state.tareas.push(payload)
+      localStorage.setItem('tareas', JSON.stringify(state.tareas))
     },
-    delete(state, payload) {
-      state.tasks = state.tasks.filter(item => item.id !== payload)
-      localStorage.setItem('tasks', JSON.stringify(state.tasks))
+    eliminar(state, payload) {
+      state.tareas = state.tareas.filter(item => item.id !== payload)
+      localStorage.setItem('tareas', JSON.stringify(state.tareas))
     },
-    task(state, payload) {
-      if(!state.tasks.find(item => item.id === payload)){
+    tarea(state, payload) {
+      if (!state.tareas.find(item => item.id === payload)) {
         router.push('/')
         return
       }
-      state.tasks = state.tasks.find(item => item.id === payload)
+      state.tarea = state.tareas.find(item => item.id === payload)
     },
-    update(state, payload){
-      state.tasks = state.tasks.map(item => item.id === payload.id ? payload : item)
+    update(state, payload) {
+      state.tareas = state.tareas.map(item => item.id === payload.id ? payload : item)
       router.push('/')
-      localStorage.setItem('tasks', JSON.stringify(state.tasks))
+      localStorage.setItem('tareas', JSON.stringify(state.tareas))
     }
   },
   actions: {
-    loadLocalStorage({commit}) {
-      if(loadLocalStorage.getItem('tasks')) {
-        const tasks = JSON.parse(loadLocalStorage.getItem('tasks'))
-        commit('load', tasks)
+    cargarLocalStorage({ commit }) {
+      if (localStorage.getItem('tareas')) {
+        const tareas = JSON.parse(localStorage.getItem('tareas'))
+        commit('cargar', tareas)
         return
       }
-      localStorage.setItem('tasks', JSON.stringify([]))
+
+      localStorage.setItem('tareas', JSON.stringify([]))
     },
-    setTasks({commit}, task) {
-      commit('set', task)
+    setTareas({ commit }, tarea) {
+      commit('set', tarea)
     },
-    deleteTasks({ commit }, id) {
-      commit('delete', id)
+    deleteTareas({ commit }, id) {
+      commit('eliminar', id)
     },
-    setTask({ commit }, id) {
-      commit('task', id)
+    setTarea({ commit }, id) {
+      commit('tarea', id)
     },
-    updateTask({ commit }, task){
-      commit('update', task)
+    updateTarea({ commit }, tarea) {
+      commit('update', tarea)
     }
   },
   modules: {

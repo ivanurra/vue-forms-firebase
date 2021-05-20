@@ -1,23 +1,23 @@
 <template>
-  <Navbar/>
-  <div class="container mt-4">
+  <Navbar />
+  <div class="container">
     <router-view/>
   </div>
 </template>
 
 <script>
-import {mapActions} from 'vuex';
-import Navbar from './components/Navbar.vue';
-
-export default {
-  components: { 
-    Navbar 
+  import {mapActions} from 'vuex'
+  import Navbar from './components/Navbar'
+  export default {
+    components: {
+      Navbar
     },
-  methods: {
-    ...mapActions(['loadLocalStorage'])
+    methods:{
+      ...mapActions(['cargarLocalStorage'])
     },
-  created() {
-      this.loadLocalStorage()
+    created(){
+      this.cargarLocalStorage()
     }
   }
 </script>
+
