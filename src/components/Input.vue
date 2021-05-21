@@ -5,7 +5,6 @@
       placeholder="Ingrese nombre"
       v-model.trim="tarea.nombre"
     >
-
     <div class="form-check form-check-inline">
       <input 
         type="checkbox"
@@ -26,7 +25,6 @@
       >
       <label for="check-2" class="form-check-label">Node.js</label>
     </div>
-
     <div class="mt-2">
       <div class="form-check form-check-inline">
         <input 

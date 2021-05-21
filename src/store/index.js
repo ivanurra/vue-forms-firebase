@@ -44,7 +44,6 @@ export default createStore({
         commit('cargar', tareas)
         return
       }
-
       localStorage.setItem('tareas', JSON.stringify([]))
     },
     setTareas({ commit }, tarea) {
