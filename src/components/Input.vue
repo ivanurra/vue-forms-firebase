@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <input
     type="text"
     class="form-control my-2"
@@ -28,6 +29,14 @@
   </div>
 
   <div class="mt-2">
+=======
+  <input 
+      type="text"
+      class="form-control my-2"
+      placeholder="Ingrese nombre"
+      v-model.trim="tarea.nombre"
+    >
+>>>>>>> 171309b959fc7751e1e506a88b81cb2c8a81e6b2
     <div class="form-check form-check-inline">
       <input
         type="radio"
@@ -43,10 +52,39 @@
         type="radio"
         id="radio-2"
         class="form-check-input"
+<<<<<<< HEAD
         value="relax"
         v-model="tarea.estado"
       />
       <label for="radio-2" class="form-check-label">Relax</label>
+=======
+        v-model="tarea.categorias"
+        value="node js"
+      >
+      <label for="check-2" class="form-check-label">Node.js</label>
+    </div>
+    <div class="mt-2">
+      <div class="form-check form-check-inline">
+        <input 
+          type="radio"
+          id="radio-1"
+          class="form-check-input"
+          value="urgente"
+          v-model="tarea.estado"
+        >
+        <label for="radio-1" class="form-check-label">Urgente</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input 
+          type="radio"
+          id="radio-2"
+          class="form-check-input"
+          value="relax"
+          v-model="tarea.estado"
+        >
+        <label for="radio-2" class="form-check-label">Relax</label>
+      </div>
+>>>>>>> 171309b959fc7751e1e506a88b81cb2c8a81e6b2
     </div>
   </div>
 
