@@ -81,8 +81,18 @@ export default createStore({
     setTarea({ commit }, id) {
       commit('tarea', id)
     },
-    updateTarea({ commit }, tarea) {
-      commit('update', tarea)
+    async updateTarea({ commit }, tarea) {
+      try {
+        const res = await fetch(`https://udemy-api-6ba05-default-rtdb.europe-west1.firebasedatabase.app/tareas/${tarea.id}.json`, {
+          method: 'PATCH',
+          body: JSON.stringify(tarea),
+        });
+        const dataDB = await res.json();
+        // console.log(dataDB)
+        commit('update', tarea)
+      } catch (error) {
+        console.log(error);
+      }
     }
   },
   modules: {
