@@ -75,8 +75,15 @@ export default createStore({
       }
       commit('set', tarea)
     },
-    deleteTareas({ commit }, id) {
-      commit('eliminar', id)
+    async deleteTareas({ commit }, id) {
+      try {
+        await fetch(`https://udemy-api-6ba05-default-rtdb.europe-west1.firebasedatabase.app/tareas/${id}.json`, {
+          method: 'DELETE',
+        });
+        commit('eliminar', id)
+      } catch (error) {
+        console.log(error);
+      }
     },
     setTarea({ commit }, id) {
       commit('tarea', id)
