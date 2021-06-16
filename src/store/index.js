@@ -43,7 +43,7 @@ export default createStore({
     },
     async setTareas({ commit }, tarea) {
       try {
-        const res = await fetch ('https://udemy-api-6ba05-default-rtdb.europe-west1.firebasedatabase.app/tareas.json',{
+        const res = await fetch (`https://udemy-api-6ba05-default-rtdb.europe-west1.firebasedatabase.app/tareas/${tarea.id}.json`,{
           method:'PUT',
           headers: {
             'Content-Type': 'application/json'
