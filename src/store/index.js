@@ -62,6 +62,26 @@ export default createStore({
         console.log(error)
       }
     },
+    async ingresoUsuario({commit}, usuario) {
+        try {
+          const res = await fetch ('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAGJ_e0L4my1k5NeYKzS_DvVX4Cv81Jklw', {
+            method: 'POST',
+            body: JSON.stringify({
+              email: usuario.email,
+              password: usuario.password,
+              returnSecureToken: true
+            })
+          });
+          const userDB = await res.json()
+          console.log('userDB', userDB)
+          if (userDB.error) {
+            return console.log(userDB.error)
+          }
+          commit('setUser', userDB)
+        } catch (error) {
+          console.log(error)
+        }
+    },
     async cargarLocalStorage({ commit }) {
       try {
         const res = await fetch('https://udemy-api-6ba05-default-rtdb.europe-west1.firebasedatabase.app/tareas.json');
