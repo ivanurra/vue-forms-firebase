@@ -53,6 +53,11 @@ export default createStore({
         })
         const userDB = await res.json()
         console.log(userDB)
+        if (userDB.error) {
+          console.log(userDB.error)
+          return
+        }
+        commit('setUser', userDB)
       } catch (error) {
         console.log(error)
       }
