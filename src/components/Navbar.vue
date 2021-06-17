@@ -1,19 +1,47 @@
 <template>
+  {{ usuarioAutenticado }}
   <div class="navbar navbar-dark bg-dark">
       <router-link to="/" class="navbar-brand">
-          Forms
+          Formulario
       </router-link>
       <div class="d-flex">
-          <router-link class="btn btn-dark" to="/">
-            Task
+          <router-link 
+            class="btn btn-dark"
+            to="/"
+            v-if="usuarioAutenticado"
+            >
+            Tareas
           </router-link>
+          <router-link 
+            class="btn btn-dark"
+            to="/ingreso"
+            v-if="!usuarioAutenticado"
+            >
+            Ingresar
+          </router-link>
+          <router-link 
+            class="btn btn-dark"
+            to="/registro"
+            v-if="!usuarioAutenticado"
+            >
+            Registrar
+          </router-link>
+          <button
+            class="btn btn-dark"
+            v-if="usuarioAutenticado"
+          >
+            Logout
+          </button>
       </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
-
+  computed: {
+    ...mapGetters(['usuarioAutenticado'])
+  }
 }
 </script>
 

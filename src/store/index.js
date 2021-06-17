@@ -142,6 +142,11 @@ export default createStore({
       }
     }
   },
+  getters: {
+    usuarioAutenticado(state) {
+      return !!state.user
+    }
+  },
   modules: {
-  }
+  },
 })
