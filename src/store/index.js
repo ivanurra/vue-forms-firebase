@@ -10,15 +10,18 @@ export default createStore({
       categorias: [],
       estado: '',
       numero: 0
-    }
+    },
+    user: null,
   },
   mutations: {
+    setUser(state, payload) {
+      state.user = payload
+    },
     cargar(state, payload) {
       state.tareas = payload
     },
     set(state, payload) {
       state.tareas.push(payload)
-
     },
     eliminar(state, payload) {
       state.tareas = state.tareas.filter(item => item.id !== payload)
@@ -38,6 +41,22 @@ export default createStore({
     }
   },
   actions: {
+    async registrarUsuario({commit}, usuario) {
+      try {
+        const res = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAGJ_e0L4my1k5NeYKzS_DvVX4Cv81Jklw`, {
+          method: 'POST',
+          body: JSON.stringify({
+            email: usuario.email,
+            password: usuario.password,
+            returnSecureToken: true
+          })
+        })
+        const userDB = await res.json()
+        console.log(userDB)
+      } catch (error) {
+        console.log(error)
+      }
+    },
     async cargarLocalStorage({ commit }) {
       try {
         const res = await fetch('https://udemy-api-6ba05-default-rtdb.europe-west1.firebasedatabase.app/tareas.json');
