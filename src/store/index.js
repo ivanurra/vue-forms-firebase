@@ -41,6 +41,10 @@ export default createStore({
     }
   },
   actions: {
+    cerrarSesion({commit}) {
+      commit('setUser', null)
+      router.push('/ingreso')
+    },
     async registrarUsuario({commit}, usuario) {
       try {
         const res = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAGJ_e0L4my1k5NeYKzS_DvVX4Cv81Jklw`, {
