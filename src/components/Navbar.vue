@@ -1,7 +1,7 @@
 <template>
   <div class="navbar navbar-dark bg-dark">
       <router-link to="/" class="navbar-brand">
-          Formulario
+          TO-DO APP
       </router-link>
       <div class="d-flex">
           <router-link 

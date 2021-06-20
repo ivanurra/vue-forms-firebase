@@ -1,6 +1,6 @@
 <template>
 
-  <h1 class="my-5">Forms</h1>
+  <h1 class="my-5">TO-DO LIST</h1>
 
   <form @submit.prevent="procesarFormulario">
     <Input :tarea="tarea" />
@@ -26,9 +26,6 @@ export default {
       tarea: {
         id: '',
         nombre: '',
-        categorias: [],
-        estado: '',
-        numero: 0
       }
     }
   },
@@ -53,9 +50,6 @@ export default {
       this.tarea = {
         id: '',
         nombre: '',
-        categorias: [],
-        estado: '',
-        numero: 0
       }
     }
   },

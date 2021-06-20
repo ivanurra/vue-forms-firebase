@@ -7,9 +7,6 @@ export default createStore({
     tarea: {
       id: '',
       nombre: '',
-      categorias: [],
-      estado: '',
-      numero: 0
     },
     user: null,
   },
